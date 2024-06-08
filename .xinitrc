@@ -7,6 +7,6 @@
 # invoke global X session script
 . /etc/X11/Xsession
 
-exec setxkbmap -option caps:super
+setxkbmap -option caps:super
 exec i3 
 
