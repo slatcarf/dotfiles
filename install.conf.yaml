@@ -13,3 +13,4 @@
     ~/.config/cava: cava
     ~/.bashrc: .bashrc
     ~/.zshrc: .zshrc
+    ~/.xinitrc: .xinitrc
