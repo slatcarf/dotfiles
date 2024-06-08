@@ -1,0 +1,15 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.config/i3: i3
+    ~/.config/kitty: kitty
+    ~/.config/picom: picom
+    ~/.config/polybar: polybar
+    ~/.config/rofi: rofi
+    ~/.config/cava: cava
+    ~/.bashrc: .bashrc
+    ~/.zshrc: .zshrc
