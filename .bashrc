@@ -148,6 +148,8 @@ source "$OSH"/oh-my-bash.sh
 # fnm
 export PATH="/home/julian/.local/share/fnm:$PATH"
 eval "`fnm env`"
+eval "$(fnm env --use-on-cd)"
+
 
 # pnpm
 export PNPM_HOME="/home/julian/.local/share/pnpm"
@@ -202,3 +204,8 @@ export LOCAL_PASSWORD="Test12345!"
 export ANDROID_HOME=/home/julian/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+eval `ssh-agent`
+ssh-add ~/.ssh/github_titanom
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

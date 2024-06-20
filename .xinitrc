@@ -5,8 +5,8 @@
 # global xinitrc file, used by all X sessions started by xinit (startx)
 
 # invoke global X session script
+setxkbmap -option caps:super
 . /etc/X11/Xsession
 
-setxkbmap -option caps:super
 exec i3 
 
