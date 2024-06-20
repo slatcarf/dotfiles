@@ -144,13 +144,6 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
-
-# fnm
-export PATH="/home/julian/.local/share/fnm:$PATH"
-eval "`fnm env`"
-eval "$(fnm env --use-on-cd)"
-
-
 # pnpm
 export PNPM_HOME="/home/julian/.local/share/pnpm"
 case ":$PATH:" in
@@ -182,10 +175,10 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
 # if this is interactive shell, then bind 'kill last command' to Ctrl-x k
 if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
 
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
 eval "$(pyenv virtualenv-init -)"
 
 #bw cli
@@ -208,3 +201,11 @@ eval `ssh-agent`
 ssh-add ~/.ssh/github_titanom
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# fnm
+FNM_PATH="/home/j/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+eval "$(fnm env --use-on-cd)"
