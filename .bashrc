@@ -197,11 +197,6 @@ export ANDROID_HOME=/home/julian/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-eval `ssh-agent`
-ssh-add ~/.ssh/github_titanom
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 # fnm
 FNM_PATH="/home/j/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
@@ -209,3 +204,6 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 eval "$(fnm env --use-on-cd)"
+
+# rbenv
+eval "$(rbenv init -)"
