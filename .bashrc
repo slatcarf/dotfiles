@@ -6,7 +6,7 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-export OSH='/home/julian/.oh-my-bash'
+export OSH='/home/j/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -198,8 +198,7 @@ export LOCAL_EMAIL="efosa.errol@falkcia.com"
 export LOCAL_PASSWORD="Test12345!"
 
 #z
-. /home/julian/z/z.sh
-
+. /usr/local/bin/z/z.sh
 # Android sdk path
 export ANDROID_HOME=/home/julian/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
