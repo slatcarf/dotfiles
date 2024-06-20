@@ -196,7 +196,7 @@ bindsym $mod+r mode "resize"
 
 # keybindings
 bindsym $mod+Shift+x exec i3lock-fancy
-bindsym Ctrl+Shift+s exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+s exec --no-startup-id maim -o --select | xclip -selection clipboard -t image/png
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 bindsym Ctrl+Mod1+h exec --no-startup-id gpaste-client ui 
@@ -223,8 +223,8 @@ exec_always --no-startup-id picom
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.fehbg &
 
-exec setxkbmap -layout us,de
-exec setxkbmap -option 'grp:alt_shift_toggle'
+exec --no-startup-id setxkbmap -layout us,de
+exec --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
 
 exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/firefox'
 exec --no-startup-id xinput set-prop "SYNA0001:00 06CB:7F28 Touchpad" "libinput Disable While Typing Enabled" 0
@@ -237,7 +237,8 @@ exec_always --no-startup-id autorandr --change
 #exec --no-startup-id i3-msg 'workspace $ws2; exec kitty'
 #exec --no-startup-id i3-msg 'workspace $ws2; exec kitty'
 
-workspace $ws1 output eDP
+workspace $ws1 output HDMI-A-0
+workspace $ws2 output eDP
 workspace $ws3 output HDMI-A-0
 for_window [class="Firefox"] focus
 
