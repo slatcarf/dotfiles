@@ -1,0 +1,83 @@
+# Alacritty Configuration File
+# Kaolin Galaxy Theme
+# Author: Ogden Webb
+# License: GNU GPLv3
+# Blurb: Theme based on one of the Sebastian Andaur arts
+
+# Window settings
+window:
+  dimensions:
+    columns: 80
+    lines: 24
+  padding:
+    x: 10
+    y: 10
+  decorations: full
+  dynamic_padding: false
+  startup_mode: Windowed
+  opacity: 0.95  # Adjust this if needed
+  title: Alacritty
+  class:
+    instance: Alacritty
+    general: Alacritty
+
+# Font configuration
+font:
+  normal:
+    family: JetBrains Mono
+    size: 14.0
+
+# Colors (Kaolin Galaxy Theme)
+colors:
+  primary:
+    background: '#1E1E2E'  # background color
+    foreground: '#e6e6e8'  # text color
+  cursor:
+    text: '#212026'  # text color inside the cursor block
+    cursor: '#e6e6e8'  # cursor color
+  selection:
+    text: '#212026'  # text color of the selected text
+    background: '#e6e6e8'  # selection background color
+  normal:
+    black:   '#212026'  # color0
+    red:     '#ef6787'  # color1
+    green:   '#49bdb0'  # color2
+    yellow:  '#eed891'  # color3
+    blue:    '#41b0f3'  # color4
+    magenta: '#cea2ca'  # color5
+    cyan:    '#6bd9db'  # color6
+    white:   '#e6e6e8'  # color7
+  bright:
+    black:   '#615B75'  # color8
+    red:     '#D6224D'  # color9
+    green:   '#6dd797'  # color10
+    yellow:  '#f5c791'  # color11
+    blue:    '#2a57cc'  # color12
+    magenta: '#9d81ba'  # color13
+    cyan:    '#0bc9cf'  # color14
+    white:   '#f2f2f2'  # color15
+
+
+# Visual Bell configuration
+bell:
+  duration: 0
+  animation: Ease
+
+# Mouse bindings
+mouse:
+  hide_when_typing: true
+
+# Keybindings
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste               }
+  - { key: C,        mods: Control|Shift, action: Copy                }
+  - { key: Q,        mods: Control|Shift, action: Quit                }
+  - { key: W,        mods: Control|Shift, action: ClearSelection      }
+
+# Other settings
+dynamic_title: true
+persistent_logging: false
+shell:
+  program: /bin/bash
+  args: []
+

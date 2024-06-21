@@ -14,3 +14,4 @@
     ~/.bashrc: .bashrc
     ~/.zshrc: .zshrc
     ~/.xinitrc: .xinitrc
+    ~/.config/alacritty: alacritty
