@@ -61,7 +61,7 @@ install_fnm() {
   else
     # Install fnm using the recommended installation script
     curl -fsSL https://fnm.vercel.app/install | bash
-    fnm install --lts
+    fnm install 20
   fi
 
   # Add fnm initialization to the shell profile to ensure it is loaded
