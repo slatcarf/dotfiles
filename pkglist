@@ -4,6 +4,7 @@ arandr
 build-essential
 cava
 curl
+direnv
 feh
 firefox-esr
 fonts-jetbrains-mono
@@ -14,9 +15,11 @@ i3
 kitty
 neofetch
 nodejs
+npm
 network-manager
 ntfs-3g
 picom
+polybar
 pulseaudio
 rbenv
 rfkill
