@@ -1,8 +1,8 @@
 # Enable the subsequent settings only in interactive sessions
 case $- in
-  *i*) ;;
+*i*) ;;
 
-    *) return;;
+*) return ;;
 esac
 
 # Path to your oh-my-bash installation.
@@ -144,66 +144,15 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
-# pnpm
-export PNPM_HOME="/home/julian/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-alias config='/usr/bin/git --git-dir=/home/julian/.customconf/ --work-tree=/home/julian'
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-#direnv 
+#direnv
 eval "$(direnv hook bash)"
-
-# HSTR configuration - add this to ~/.bashrc
-alias hh=hstr                    # hh to be alias for hstr
-export HSTR_CONFIG=hicolor       # get more colors
-shopt -s histappend              # append new history items to .bash_history
-export HISTCONTROL=ignorespace   # leading space hides commands from history
-export HISTFILESIZE=10000        # increase history file size (default is 500)
-export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
-# ensure synchronization between bash memory and history file
-export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
-# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
-if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
-# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
-if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-#bw cli
-function bwu(){
-  export BW_SESSION=$(bw unlock --raw $1)
-}
 
 #llc auth
 export LOCAL_EMAIL="efosa.errol@falkcia.com"
 export LOCAL_PASSWORD="Test12345!"
 
-#z
-. /usr/local/bin/z/z.sh
-# Android sdk path
-export ANDROID_HOME=/home/julian/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# fnm
-FNM_PATH="/home/j/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
-eval "$(fnm env --use-on-cd)"
-
 # rbenv
 eval "$(rbenv init -)"
+
+# z
+source /usr/local/bin/z/z.sh
