@@ -36,7 +36,7 @@ install_z() {
   if [ -d "$HOME/.z" ]; then
     echo "z is already installed."
   else
-    git clone https://github.com/rupa/z.git $Z_PATH
+    sudo git clone https://github.com/rupa/z.git $Z_PATH
   fi
 
   # Check if the .bashrc already sources z.sh
