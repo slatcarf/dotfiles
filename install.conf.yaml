@@ -15,3 +15,5 @@
     ~/.zshrc: .zshrc
     ~/.xinitrc: .xinitrc
     ~/.config/alacritty: alacritty
+    ~/.bash_profile: .bash_profile
+
