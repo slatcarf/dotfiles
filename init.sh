@@ -123,6 +123,14 @@ install_pyenv() {
   append_newline_to_bashrc
 }
 
+install_pnpm() {
+  if command -v pnpm >/dev/null 2>&1; then
+    echo "pnpm is already installed."
+  else
+    npm add -g pnpm
+  fi
+}
+
 # Ensure the script isn't running as root (not recommended for user-specific installations)
 if [ "$EUID" -eq 0 ]; then
   echo "Please do not run this script as root. It uses 'sudo' internally when needed."
@@ -146,6 +154,8 @@ install_vscode
 
 # Install pyenv
 install_pyenv
+
+install_pnpm
 
 # Add hstr configuration
 add_hstr_config
