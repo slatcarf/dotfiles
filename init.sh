@@ -12,7 +12,7 @@ install_oh_my_bash() {
     echo "Oh My Bash is already installed."
   else
     echo "Installing Oh My Bash..."
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
     echo "Oh My Bash installation complete."
   fi
   append_newline_to_bashrc
