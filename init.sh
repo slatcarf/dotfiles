@@ -52,7 +52,7 @@ install_z() {
 
 # Function to install 'fnm' (Fast Node Manager)
 install_fnm() {
-  echo "Installing fnm..."
+  echo "Installing fnm and node lts..."
   command -v fnm
 
   # Check if fnm is already installed
@@ -61,6 +61,7 @@ install_fnm() {
   else
     # Install fnm using the recommended installation script
     curl -fsSL https://fnm.vercel.app/install | bash
+    fnm install --lts
   fi
 
   # Add fnm initialization to the shell profile to ensure it is loaded
