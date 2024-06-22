@@ -61,7 +61,7 @@ install_fnm() {
   else
     # Install fnm using the recommended installation script
     curl -fsSL https://fnm.vercel.app/install | bash
-    . "$HOME/.bashrc"
+    source "$HOME/.bashrc"
     fnm install 20
     fnm use 20
   fi
