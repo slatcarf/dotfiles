@@ -14,6 +14,7 @@
     ~/.bashrc: .bashrc
     ~/.zshrc: .zshrc
     ~/.xinitrc: .xinitrc
+    ~/.xprofile: .xprofile
     ~/.config/alacritty: alacritty
     ~/.bash_profile: .bash_profile
     ~/wallpaper: wallpaper
