@@ -169,6 +169,6 @@ install_pnpm
 # Add hstr configuration
 add_hstr_config
 
-feh --bg-scale ~/wallpaper/nord.png
+feh --bg-scale ~/wallpaper/nord2.png
 
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."
