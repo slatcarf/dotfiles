@@ -138,6 +138,19 @@ install_pnpm() {
   fi
 }
 
+generate_ssh_key() {
+    local key_name=$1
+    local comment=$2
+
+    if [ ! -f ~/.ssh/${key_name} ]; then
+        echo "Generating SSH key: ${key_name}"
+        ssh-keygen -t ed25519 -N "" -C "${comment}" -f ~/.ssh/${key_name}
+        echo "SSH key ${key_name} generated."
+    else
+        echo "SSH key ${key_name} already exists."
+    fi
+}
+
 # Ensure the script isn't running as root (not recommended for user-specific installations)
 if [ "$EUID" -eq 0 ]; then
   echo "Please do not run this script as root. It uses 'sudo' internally when needed."
@@ -169,6 +182,12 @@ install_pnpm
 # Add hstr configuration
 add_hstr_config
 
+# Generate SSH keys
+generate_ssh_key "private" "private_key"
+generate_ssh_key "titanom" "titanom_key"
+
+
+startx
 feh --bg-scale ~/wallpaper/nord2.png
 
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."
