@@ -16,4 +16,6 @@
     ~/.xinitrc: .xinitrc
     ~/.config/alacritty: alacritty
     ~/.bash_profile: .bash_profile
+    ~/wallpaper: wallpaper
+
 
