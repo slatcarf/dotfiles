@@ -17,5 +17,7 @@
     ~/.config/alacritty: alacritty
     ~/.bash_profile: .bash_profile
     ~/wallpaper: wallpaper
+    ~/.ssh/config: .ssh_config
+
 
 

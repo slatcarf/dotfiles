@@ -1,0 +1,14 @@
+Host contabo
+	HostName 2.58.81.64
+	IdentityFile ~/.ssh/private
+
+# Github titanom (default)
+Host github.com
+	HostName github.com
+	IdentityFile ~/.ssh/titanom
+	IdentitiesOnly yes
+
+Host github-jw-400
+	HostName github.com
+	IdentityFile ~/.ssh/private
+	IdentitiesOnly yes
