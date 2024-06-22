@@ -62,6 +62,7 @@ install_fnm() {
     # Install fnm using the recommended installation script
     curl -fsSL https://fnm.vercel.app/install | bash
     fnm install 20
+    fnm use 20
   fi
 
   # Add fnm initialization to the shell profile to ensure it is loaded
@@ -86,6 +87,10 @@ install_vscode() {
     sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
     echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
     rm -f packages.microsoft.gpg
+
+    sudo apt install apt-transport-https
+    sudo apt update
+    sudo apt install code
 
     echo "Visual Studio Code installation complete."
   fi
@@ -137,6 +142,8 @@ if [ "$EUID" -eq 0 ]; then
   echo "Please do not run this script as root. It uses 'sudo' internally when needed."
   exit 1
 fi
+
+sudo apt update && sudo apt upgrade
 
 # Install system-wide packages
 install_packages
