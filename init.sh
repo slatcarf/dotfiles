@@ -157,7 +157,7 @@ fi
 sudo apt update && sudo apt upgrade
 
 # Install system-wide packages
-# install_packages
+install_packages
 
 # Install Oh My Bash (must be first to avoid overwriting .bashrc changes)
 install_oh_my_bash
