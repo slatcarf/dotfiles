@@ -1,5 +1,5 @@
 alias dush="du -sh ./* | sort -hr"
-alias formatfix = "pnpm format && git commit -m 
+alias formatfix="pnpm format && git add . &&git commit -m 'chore: formatting' && git push"
 alias ip='ip --color=auto'
 
 export EDITOR=vim
