@@ -98,7 +98,6 @@ install_vscode() {
 
 # Function to add hstr config
 add_hstr_config() {
-  echo "Adding hstr config"
 
   # Add hstr config to .bashrc
   if ! grep -q 'HSTR configuration' "$HOME/.bashrc"; then
@@ -136,6 +135,44 @@ install_pnpm() {
   fi
 }
 
+install_font_awesome() {
+
+  # URL of the FontAwesome zip file
+  URL="https://use.fontawesome.com/releases/v6.6.0/fontawesome-free-6.6.0-desktop.zip"
+
+  # Temporary directory for downloading and unzipping
+  TEMP_DIR=$(mktemp -d)
+
+  # Destination directory for the fonts
+  FONT_DIR="$HOME/.fonts"
+
+  # Download the zip file
+  echo "Downloading FontAwesome..."
+  wget -q -O "$TEMP_DIR/fontawesome.zip" "$URL"
+
+  # Unzip the file
+  echo "Unzipping FontAwesome..."
+  unzip -q "$TEMP_DIR/fontawesome.zip" -d "$TEMP_DIR"
+
+  # Create the fonts directory if it doesn't exist
+  echo "Creating fonts directory if it doesn't exist..."
+  mkdir -p "$FONT_DIR"
+
+  # Move the .otf files to the fonts directory
+  echo "Moving .otf files to $FONT_DIR..."
+  find "$TEMP_DIR" -name '*.otf' -exec mv {} "$FONT_DIR" \;
+
+  # Update the font cache
+  echo "Updating font cache..."
+  fc-cache -f -v
+
+  # Cleanup
+  echo "Cleaning up..."
+  rm -rf "$TEMP_DIR"
+
+  echo "FontAwesome installation complete!"
+}
+
 generate_ssh_key() {
   local key_name=$1
   local comment=$2
@@ -159,6 +196,7 @@ sudo apt update && sudo apt upgrade
 
 # Install system-wide packages
 install_packages
+install_font_awesome
 
 # Install Oh My Bash (must be first to avoid overwriting .bashrc changes)
 install_oh_my_bash
