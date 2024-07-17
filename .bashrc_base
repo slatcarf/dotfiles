@@ -1,0 +1,6 @@
+alias dush="du -sh ./* | sort -hr"
+alias formatfix = "pnpm format && git commit -m 
+alias ip='ip --color=auto'
+
+export EDITOR=vim
+export VISUAL=vim

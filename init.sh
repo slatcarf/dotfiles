@@ -15,7 +15,6 @@ install_oh_my_bash() {
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
     echo "Oh My Bash installation complete."
   fi
-  append_newline_to_bashrc
 }
 
 # Function to install packages from a list
@@ -24,7 +23,6 @@ install_packages() {
   for pkg in $(cat pkglist); do
     sudo apt-get -y install "$pkg"
   done
-  append_newline_to_bashrc
 }
 
 # Function to install 'z' from GitHub
@@ -33,10 +31,10 @@ install_z() {
   echo "Installing z..."
 
   # Check if the .z directory already exists
-  if [ -d "$HOME/.z" ]; then
+  if [ -d "$Z_PATH" ]; then
     echo "z is already installed."
   else
-    sudo git clone https://github.com/rupa/z.git $Z_PATH
+    sudo git clone https://github.com/rupa/z.git $Z_PATHInstalling z
   fi
 
   # Check if the .bashrc already sources z.sh
@@ -44,15 +42,14 @@ install_z() {
     echo "Adding z source to .bashrc..."
     echo "# z" >>"$HOME/.bashrc"
     echo "source $Z_PATH/z.sh" >>"$HOME/.bashrc"
+    append_newline_to_bashrc
   else
     echo "z source already present in .bashrc"
   fi
-  append_newline_to_bashrc
 }
 
 # Function to install 'fnm' (Fast Node Manager)
 install_fnm() {
-  echo "Installing fnm and node lts..."
   command -v fnm
 
   # Check if fnm is already installed
@@ -60,6 +57,7 @@ install_fnm() {
     echo "fnm is already installed."
   else
     # Install fnm using the recommended installation script
+    echo "Installing fnm..."
     curl -fsSL https://fnm.vercel.app/install | bash
     source "$HOME/.bashrc"
     fnm install 20
@@ -70,10 +68,10 @@ install_fnm() {
   if ! grep -q 'eval "$(fnm env --use-on-cd)"' "$HOME/.bashrc"; then
     echo "Adding fnm initialization to .bashrc..."
     echo 'eval "$(fnm env --use-on-cd)"' >>"$HOME/.bashrc"
+    append_newline_to_bashrc
   else
     echo "fnm initialization already present in .bashrc"
   fi
-  append_newline_to_bashrc
 }
 
 # Function to install the latest Visual Studio Code
@@ -95,7 +93,6 @@ install_vscode() {
 
     echo "Visual Studio Code installation complete."
   fi
-  append_newline_to_bashrc
 }
 
 # Function to add hstr config
@@ -106,10 +103,10 @@ add_hstr_config() {
   if ! grep -q 'HSTR configuration' "$HOME/.bashrc"; then
     echo "Adding hstr config to .bashrc..."
     hstr --show-configuration >>"$HOME/.bashrc"
+    append_newline_to_bashrc
   else
     echo "hstr config already present in .bashrc"
   fi
-  append_newline_to_bashrc
 }
 
 # Function to install pyenv
@@ -126,8 +123,8 @@ install_pyenv() {
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >>"$HOME/.bashrc"
     echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >>"$HOME/.bashrc"
     echo 'eval "$(pyenv init -)"' >>"$HOME/.bashrc"
+    append_newline_to_bashrc
   fi
-  append_newline_to_bashrc
 }
 
 install_pnpm() {
@@ -139,16 +136,16 @@ install_pnpm() {
 }
 
 generate_ssh_key() {
-    local key_name=$1
-    local comment=$2
+  local key_name=$1
+  local comment=$2
 
-    if [ ! -f ~/.ssh/${key_name} ]; then
-        echo "Generating SSH key: ${key_name}"
-        ssh-keygen -t ed25519 -N "" -C "${comment}" -f ~/.ssh/${key_name}
-        echo "SSH key ${key_name} generated."
-    else
-        echo "SSH key ${key_name} already exists."
-    fi
+  if [ ! -f ~/.ssh/${key_name} ]; then
+    echo "Generating SSH key: ${key_name}"
+    ssh-keygen -t ed25519 -N "" -C "${comment}" -f ~/.ssh/${key_name}
+    echo "SSH key ${key_name} generated."
+  else
+    echo "SSH key ${key_name} already exists."
+  fi
 }
 
 # Ensure the script isn't running as root (not recommended for user-specific installations)
@@ -160,10 +157,17 @@ fi
 sudo apt update && sudo apt upgrade
 
 # Install system-wide packages
-install_packages
+# install_packages
 
 # Install Oh My Bash (must be first to avoid overwriting .bashrc changes)
 install_oh_my_bash
+
+if grep -qxF "source $HOME/.bashrc_base" "$HOME/.bashrc"; then
+  echo "source $HOME/.bashrc_base is already present in .bashrc"
+else
+  echo "source $HOME/.bashrc_base" >>"$HOME/.bashrc"
+  echo "Added source $HOME/.bashrc_base to .bashrc"
+fi
 
 # Run user-specific installations for 'z'
 install_z
@@ -186,12 +190,11 @@ add_hstr_config
 generate_ssh_key "private" "private_key"
 generate_ssh_key "titanom" "titanom_key"
 
-
-if ! pgrep -x "Xorg" > /dev/null; then
-    echo "No X session found. Starting X..."
-    startx
+if ! pgrep -x "Xorg" >/dev/null; then
+  echo "No X session found. Starting X..."
+  startx
 else
-    echo "X session is already running."
+  echo "X session is already running."
 fi
 feh --bg-scale ~/wallpaper/nord2.png
 

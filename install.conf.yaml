@@ -11,7 +11,7 @@
     ~/.config/polybar: polybar
     ~/.config/rofi: rofi
     ~/.config/cava: cava
-    ~/.bashrc: .bashrc
+    ~/.bashrc_base: .bashrc_base
     ~/.zshrc: .zshrc
     ~/.xinitrc: .xinitrc
     ~/.config/alacritty: alacritty
