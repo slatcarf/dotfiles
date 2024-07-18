@@ -1,6 +1,7 @@
 Host contabo
 	HostName 2.58.81.64
 	IdentityFile ~/.ssh/private
+  Port 4444
 
 # Github titanom (default)
 Host github.com
