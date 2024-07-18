@@ -235,6 +235,5 @@ if ! pgrep -x "Xorg" >/dev/null; then
 else
   echo "X session is already running."
 fi
-feh --bg-scale ~/wallpaper/nord2.png
 
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."

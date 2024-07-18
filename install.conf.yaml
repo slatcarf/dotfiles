@@ -16,6 +16,7 @@
     ~/.xinitrc: .xinitrc
     ~/.config/alacritty: alacritty
     ~/.bash_profile: .bash_profile
+    ~/.fehbg: .fehbg
     ~/wallpaper: wallpaper
     ~/.ssh/config: .ssh_config
 
