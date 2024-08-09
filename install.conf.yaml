@@ -4,6 +4,9 @@
 
 - clean: ['~']
 
+- create:
+  - ~/.config/zathura
+
 - link:
     ~/.config/i3: i3
     ~/.config/kitty: kitty
@@ -13,12 +16,12 @@
     ~/.config/cava: cava
     ~/.bashrc_base: .bashrc_base
     ~/.zshrc: .zshrc
+    ~/.config/zathura/zathurarc: zathurarc
     ~/.xinitrc: .xinitrc
     ~/.config/alacritty: alacritty
     ~/.bash_profile: .bash_profile
     ~/.fehbg: .fehbg
     ~/wallpaper: wallpaper
     ~/.ssh/config: .ssh_config
-
 
 
