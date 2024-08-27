@@ -47,7 +47,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id alacritty 
 
 # kill focused window
 bindsym $mod+q kill
@@ -104,6 +104,8 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
+bindsym $mod+p exec wlogout
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -204,6 +206,8 @@ bindsym Ctrl+Mod1+h exec --no-startup-id gpaste-client ui
 bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+# Toggle keyboard layout
+bindsym $mod+t exec ~/.local/bin/toggle-keyboard.sh
 
 # styling
 smart_gaps on 
@@ -212,15 +216,15 @@ gaps outer 0
 default_border none
 for_window [floating] border none
 
-client.focused #ffffff #285577 #ffffff #2e9ef4 #4C9ED9
-client.focused_inactive #ffffff #285577 #ffffff #2e9ef4 #000000
-client.unfocused #ffffff #285577 #ffffff #2e9ef4 #000000
-#for_window [class="^.*"] border pixel 1
+client.focused #ffffff #285577 #ffffff #88c0d0 #88c0d0
+client.focused_inactive #ffffff #285577 #ffffff #4c566a #4c566a
+client.unfocused #ffffff #285577 #ffffff #4c566a #4c566a
+for_window [class="^.*"] border pixel 2
 smart_borders on 
 
 # autostart
 exec_always --no-startup-id picom 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.fehbg &
 
 #exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/firefox'
