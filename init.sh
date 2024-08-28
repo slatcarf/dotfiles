@@ -5,17 +5,6 @@ append_newline_to_bashrc() {
   echo "" >>"$HOME/.bashrc"
 }
 
-# Function to install 'oh my bash'
-install_oh_my_bash() {
-  # Check if Oh My Bash is already installed
-  if [ -d "$HOME/.oh-my-bash" ]; then
-    echo "Oh My Bash is already installed."
-  else
-    echo "Installing Oh My Bash..."
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
-    echo "Oh My Bash installation complete."
-  fi
-}
 
 # Function to install packages from a list
 install_packages() {
@@ -109,6 +98,27 @@ add_hstr_config() {
   fi
 }
 
+install_starship() {
+    # Check if Starship is already installed
+    if command -v starship &> /dev/null; then
+        echo "Starship is already installed."
+    else
+        echo "Starship is not installed. Installing now..."
+
+        # Install Starship
+        curl -sS https://starship.rs/install.sh | sh
+
+        # Check if installation was successful
+        if command -v starship &> /dev/null; then
+            echo "Starship installed successfully."
+        else
+            echo "Starship installation failed."
+            return 1
+        fi
+    fi
+}
+
+
 # Function to install pyenv
 install_pyenv() {
   if [ -d "$HOME/.pyenv" ]; then
@@ -136,41 +146,46 @@ install_pnpm() {
 }
 
 install_font_awesome() {
+    # Check if FontAwesome is already installed by looking for one of its font files
+    if fc-list | grep -qi "Font Awesome"; then
+        echo "FontAwesome is already installed."
+        return 0
+    fi
 
-  # URL of the FontAwesome zip file
-  URL="https://use.fontawesome.com/releases/v6.6.0/fontawesome-free-6.6.0-desktop.zip"
+    # URL of the FontAwesome zip file
+    URL="https://use.fontawesome.com/releases/v6.6.0/fontawesome-free-6.6.0-desktop.zip"
 
-  # Temporary directory for downloading and unzipping
-  TEMP_DIR=$(mktemp -d)
+    # Temporary directory for downloading and unzipping
+    TEMP_DIR=$(mktemp -d)
 
-  # Destination directory for the fonts
-  FONT_DIR="$HOME/.fonts"
+    # Destination directory for the fonts
+    FONT_DIR="$HOME/.fonts"
 
-  # Download the zip file
-  echo "Downloading FontAwesome..."
-  wget -q -O "$TEMP_DIR/fontawesome.zip" "$URL"
+    # Download the zip file
+    echo "Downloading FontAwesome..."
+    wget -q -O "$TEMP_DIR/fontawesome.zip" "$URL"
 
-  # Unzip the file
-  echo "Unzipping FontAwesome..."
-  unzip -q "$TEMP_DIR/fontawesome.zip" -d "$TEMP_DIR"
+    # Unzip the file
+    echo "Unzipping FontAwesome..."
+    unzip -q "$TEMP_DIR/fontawesome.zip" -d "$TEMP_DIR"
 
-  # Create the fonts directory if it doesn't exist
-  echo "Creating fonts directory if it doesn't exist..."
-  mkdir -p "$FONT_DIR"
+    # Create the fonts directory if it doesn't exist
+    echo "Creating fonts directory if it doesn't exist..."
+    mkdir -p "$FONT_DIR"
 
-  # Move the .otf files to the fonts directory
-  echo "Moving .otf files to $FONT_DIR..."
-  find "$TEMP_DIR" -name '*.otf' -exec mv {} "$FONT_DIR" \;
+    # Move the .otf files to the fonts directory
+    echo "Moving .otf files to $FONT_DIR..."
+    find "$TEMP_DIR" -name '*.otf' -exec mv {} "$FONT_DIR" \;
 
-  # Update the font cache
-  echo "Updating font cache..."
-  fc-cache -f -v
+    # Update the font cache
+    echo "Updating font cache..."
+    fc-cache -f -v
 
-  # Cleanup
-  echo "Cleaning up..."
-  rm -rf "$TEMP_DIR"
+    # Cleanup
+    echo "Cleaning up..."
+    rm -rf "$TEMP_DIR"
 
-  echo "FontAwesome installation complete!"
+    echo "FontAwesome installation complete!"
 }
 
 generate_ssh_key() {
@@ -198,15 +213,16 @@ sudo apt update && sudo apt upgrade
 install_packages
 install_font_awesome
 
-# Install Oh My Bash (must be first to avoid overwriting .bashrc changes)
-install_oh_my_bash
-
+# add .bashrc_base
 if grep -qxF "source $HOME/.bashrc_base" "$HOME/.bashrc"; then
   echo "source $HOME/.bashrc_base is already present in .bashrc"
 else
   echo "source $HOME/.bashrc_base" >>"$HOME/.bashrc"
   echo "Added source $HOME/.bashrc_base to .bashrc"
 fi
+
+# Install starship 
+install_starship
 
 # Run user-specific installations for 'z'
 install_z
