@@ -114,6 +114,8 @@ install_starship() {
         # Check if installation was successful
         if command -v starship &> /dev/null; then
             echo "Starship installed successfully."
+            echo "Adding starship config to .bashrc"
+            echo 'eval "$(starship init bash)"' >> "$HOME/.bashrc"
         else
             echo "Starship installation failed."
             return 1
