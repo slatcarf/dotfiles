@@ -23,5 +23,6 @@
     ~/.fehbg: .fehbg
     ~/wallpaper: wallpaper
     ~/.ssh/config: .ssh_config
+    ~/.config/starship.toml: starship.toml
 
 
