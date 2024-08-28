@@ -247,8 +247,8 @@ install_pnpm
 add_hstr_config
 
 # Generate SSH keys
-generate_ssh_key "private" "private_key"
-generate_ssh_key "titanom" "titanom_key"
+generate_ssh_key "gh_alt" "gh_alt_key"
+generate_ssh_key "main" "main_key"
 
 if ! pgrep -x "Xorg" >/dev/null; then
   echo "No X session found. Starting X..."

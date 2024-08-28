@@ -1,15 +1,10 @@
-Host contabo
-	HostName 2.58.81.64
-	IdentityFile ~/.ssh/private
-  Port 4444
-
-# Github titanom (default)
+# Github work and main account (default)
 Host github.com
 	HostName github.com
-	IdentityFile ~/.ssh/titanom
+	IdentityFile ~/.ssh/main
 	IdentitiesOnly yes
 
-Host github-jw-400
+Host github-alt
 	HostName github.com
-	IdentityFile ~/.ssh/private
+	IdentityFile ~/.ssh/gh_alt
 	IdentitiesOnly yes
