@@ -5,13 +5,16 @@ append_newline_to_bashrc() {
   echo "" >>"$HOME/.bashrc"
 }
 
-
 # Function to install packages from a list
 install_packages() {
   echo "Installing packages from pkglist..."
-  for pkg in $(cat pkglist); do
-    sudo apt-get -y install "$pkg"
-  done
+  while IFS= read -r pkg; do
+    if ! dpkg -l | grep -q "^ii  $pkg "; then
+      sudo apt-get -y install "$pkg"
+    else
+      echo "$pkg is already installed."
+    fi
+  done < pkglist
 }
 
 # Function to install 'z' from GitHub
@@ -23,7 +26,7 @@ install_z() {
   if [ -d "$Z_PATH" ]; then
     echo "z is already installed."
   else
-    "Cloning z..."
+    echo "Cloning z..."
     sudo git clone https://github.com/rupa/z.git $Z_PATH
   fi
 
@@ -253,3 +256,4 @@ else
 fi
 
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."
+
