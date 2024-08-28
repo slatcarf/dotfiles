@@ -1,10 +1,10 @@
-# Alacritty Configuration File
-# Kaolin Galaxy Theme
-# Author: Ogden Webb
-# License: GNU GPLv3
-# Blurb: Theme based on one of the Sebastian Andaur arts
+# Copyright (c) 2016-present Sven Greb <development@svengreb.de>
+# This source code is licensed under the MIT license found in the license file.
+font:
+  normal:
+    family: JetBrains Mono
+    size: 14.0
 
-# Window settings
 window:
   dimensions:
     columns: 80
@@ -15,48 +15,61 @@ window:
   decorations: full
   dynamic_padding: false
   startup_mode: Windowed
-  opacity: 0.95  # Adjust this if needed
+  opacity: 1  # Adjust this if needed
   title: Alacritty
   class:
     instance: Alacritty
     general: Alacritty
 
-# Font configuration
-font:
-  normal:
-    family: JetBrains Mono
-    size: 14.0
-
-# Colors (Kaolin Galaxy Theme)
 colors:
   primary:
-    background: '#1E1E2E'  # background color
-    foreground: '#e6e6e8'  # text color
+    background: "#2e3440"
+    foreground: "#d8dee9"
+    dim_foreground: "#a5abb6"
   cursor:
-    text: '#212026'  # text color inside the cursor block
-    cursor: '#e6e6e8'  # cursor color
+    text: "#2e3440"
+    cursor: "#d8dee9"
+  vi_mode_cursor:
+    text: "#2e3440"
+    cursor: "#d8dee9"
   selection:
-    text: '#212026'  # text color of the selected text
-    background: '#e6e6e8'  # selection background color
-  normal:
-    black:   '#212026'  # color0
-    red:     '#ef6787'  # color1
-    green:   '#49bdb0'  # color2
-    yellow:  '#eed891'  # color3
-    blue:    '#41b0f3'  # color4
-    magenta: '#cea2ca'  # color5
-    cyan:    '#6bd9db'  # color6
-    white:   '#e6e6e8'  # color7
-  bright:
-    black:   '#615B75'  # color8
-    red:     '#D6224D'  # color9
-    green:   '#6dd797'  # color10
-    yellow:  '#f5c791'  # color11
-    blue:    '#2a57cc'  # color12
-    magenta: '#9d81ba'  # color13
-    cyan:    '#0bc9cf'  # color14
-    white:   '#f2f2f2'  # color15
+    text: CellForeground
+    background: "#4c566a"
+  search:
+    matches:
+      foreground: CellBackground
+      background: "#88c0d0"
+  footer_bar:
+    background: "#434c5e"
+    foreground: "#d8dee9"
 
+  normal:
+    black: "#3b4252"
+    red: "#bf616a"
+    green: "#a3be8c"
+    yellow: "#ebcb8b"
+    blue: "#81a1c1"
+    magenta: "#b48ead"
+    cyan: "#88c0d0"
+    white: "#e5e9f0"
+  bright:
+    black: "#4c566a"
+    red: "#bf616a"
+    green: "#a3be8c"
+    yellow: "#ebcb8b"
+    blue: "#81a1c1"
+    magenta: "#b48ead"
+    cyan: "#8fbcbb"
+    white: "#eceff4"
+  dim:
+    black: "#373e4d"
+    red: "#94545d"
+    green: "#809575"
+    yellow: "#b29e75"
+    blue: "#68809a"
+    magenta: "#8c738c"
+    cyan: "#6d96a5"
+    white: "#aeb3bb"
 
 # Visual Bell configuration
 bell:
@@ -80,4 +93,3 @@ persistent_logging: false
 shell:
   program: /bin/bash
   args: []
-
