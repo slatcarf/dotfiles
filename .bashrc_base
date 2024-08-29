@@ -2,6 +2,7 @@ alias dush="du -sh ./* | sort -hr"
 alias formatfix="pnpm format && git add . && git commit -m 'chore: formatting' && git push"
 alias ip='ip --color=auto'
 alias ls='ls --color=auto'
+alias df='df -PTh -x tmpfs -x devtmpfs -x squashfs -x overlay | column -t'
 
 export EDITOR=vim
 export VISUAL=vim
