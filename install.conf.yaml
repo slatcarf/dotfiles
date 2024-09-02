@@ -25,5 +25,6 @@
     ~/.ssh/config: .ssh_config
     ~/.config/starship.toml: starship.toml
     ~/.vimrc: .vimrc
+    ~/.local/bin/toggle-keyboard.sh: toggle-keyboard.sh
 
 
