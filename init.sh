@@ -14,7 +14,7 @@ install_packages() {
     else
       echo "$pkg is already installed."
     fi
-  done < pkglist
+  done <pkglist
 }
 
 # Function to install 'z' from GitHub
@@ -43,7 +43,6 @@ install_z() {
 
 # Function to install 'fnm' (Fast Node Manager)
 install_fnm() {
-  command -v fnm
 
   # Check if fnm is already installed
   if command -v fnm >/dev/null 2>&1; then
@@ -65,6 +64,22 @@ install_fnm() {
   else
     echo "fnm initialization already present in .bashrc"
   fi
+}
+
+# Function to install 'fnm' (Fast Node Manager)
+install_kitty() {
+  command -v kitty
+
+  # Check if fnm is already installed
+  if command -v kitty >/dev/null 2>&1; then
+    echo "kitty is already installed."
+  else
+    echo "Installing kitty..."
+    curl -fsSL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    sudo ln -s $HOME/.local/kitty.app/bin/* /usr/bin/
+  fi
+  echo "Kitty installation complete."
+
 }
 
 # Function to install the latest Visual Studio Code
@@ -102,27 +117,26 @@ add_hstr_config() {
 }
 
 install_starship() {
-    # Check if Starship is already installed
-    if command -v starship &> /dev/null; then
-        echo "Starship is already installed."
+  # Check if Starship is already installed
+  if command -v starship &>/dev/null; then
+    echo "Starship is already installed."
+  else
+    echo "Starship is not installed. Installing now..."
+
+    # Install Starship
+    curl -sS https://starship.rs/install.sh | sh
+
+    # Check if installation was successful
+    if command -v starship &>/dev/null; then
+      echo "Starship installed successfully."
+      echo "Adding starship config to .bashrc"
+      echo 'eval "$(starship init bash)"' >>"$HOME/.bashrc"
     else
-        echo "Starship is not installed. Installing now..."
-
-        # Install Starship
-        curl -sS https://starship.rs/install.sh | sh
-
-        # Check if installation was successful
-        if command -v starship &> /dev/null; then
-            echo "Starship installed successfully."
-            echo "Adding starship config to .bashrc"
-            echo 'eval "$(starship init bash)"' >> "$HOME/.bashrc"
-        else
-            echo "Starship installation failed."
-            return 1
-        fi
+      echo "Starship installation failed."
+      return 1
     fi
+  fi
 }
-
 
 # Function to install pyenv
 install_pyenv() {
@@ -151,46 +165,46 @@ install_pnpm() {
 }
 
 install_font_awesome() {
-    # Check if FontAwesome is already installed by looking for one of its font files
-    if fc-list | grep -qi "Font Awesome"; then
-        echo "FontAwesome is already installed."
-        return 0
-    fi
+  # Check if FontAwesome is already installed by looking for one of its font files
+  if fc-list | grep -qi "Font Awesome"; then
+    echo "FontAwesome is already installed."
+    return 0
+  fi
 
-    # URL of the FontAwesome zip file
-    URL="https://use.fontawesome.com/releases/v6.6.0/fontawesome-free-6.6.0-desktop.zip"
+  # URL of the FontAwesome zip file
+  URL="https://use.fontawesome.com/releases/v6.6.0/fontawesome-free-6.6.0-desktop.zip"
 
-    # Temporary directory for downloading and unzipping
-    TEMP_DIR=$(mktemp -d)
+  # Temporary directory for downloading and unzipping
+  TEMP_DIR=$(mktemp -d)
 
-    # Destination directory for the fonts
-    FONT_DIR="$HOME/.fonts"
+  # Destination directory for the fonts
+  FONT_DIR="$HOME/.fonts"
 
-    # Download the zip file
-    echo "Downloading FontAwesome..."
-    wget -q -O "$TEMP_DIR/fontawesome.zip" "$URL"
+  # Download the zip file
+  echo "Downloading FontAwesome..."
+  wget -q -O "$TEMP_DIR/fontawesome.zip" "$URL"
 
-    # Unzip the file
-    echo "Unzipping FontAwesome..."
-    unzip -q "$TEMP_DIR/fontawesome.zip" -d "$TEMP_DIR"
+  # Unzip the file
+  echo "Unzipping FontAwesome..."
+  unzip -q "$TEMP_DIR/fontawesome.zip" -d "$TEMP_DIR"
 
-    # Create the fonts directory if it doesn't exist
-    echo "Creating fonts directory if it doesn't exist..."
-    mkdir -p "$FONT_DIR"
+  # Create the fonts directory if it doesn't exist
+  echo "Creating fonts directory if it doesn't exist..."
+  mkdir -p "$FONT_DIR"
 
-    # Move the .otf files to the fonts directory
-    echo "Moving .otf files to $FONT_DIR..."
-    find "$TEMP_DIR" -name '*.otf' -exec mv {} "$FONT_DIR" \;
+  # Move the .otf files to the fonts directory
+  echo "Moving .otf files to $FONT_DIR..."
+  find "$TEMP_DIR" -name '*.otf' -exec mv {} "$FONT_DIR" \;
 
-    # Update the font cache
-    echo "Updating font cache..."
-    fc-cache -f -v
+  # Update the font cache
+  echo "Updating font cache..."
+  fc-cache -f -v
 
-    # Cleanup
-    echo "Cleaning up..."
-    rm -rf "$TEMP_DIR"
+  # Cleanup
+  echo "Cleaning up..."
+  rm -rf "$TEMP_DIR"
 
-    echo "FontAwesome installation complete!"
+  echo "FontAwesome installation complete!"
 }
 
 generate_ssh_key() {
@@ -226,24 +240,20 @@ else
   echo "Added source $HOME/.bashrc_base to .bashrc"
 fi
 
-# Install starship 
+install_kitty
+
 install_starship
 
-# Run user-specific installations for 'z'
 install_z
 
-# Install fnm
 install_fnm
 
-# Install Visual Studio Code
 install_vscode
 
-# Install pyenv
 install_pyenv
 
 install_pnpm
 
-# Add hstr configuration
 add_hstr_config
 
 # Generate SSH keys
@@ -258,4 +268,3 @@ else
 fi
 
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."
-
