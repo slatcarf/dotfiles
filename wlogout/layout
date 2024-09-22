@@ -19,13 +19,13 @@
 {
     "label" : "shutdown",
     "action" : "systemctl poweroff",
-    "text" : "Shutdown",
+    "text" : "Poweroff",
     "keybind" : "p"
 }
 {
     "label" : "suspend",
     "action" : "systemctl suspend",
-    "text" : "Poweroff",
+    "text" : "Suspend",
     "keybind" : "s"
 }
 {
