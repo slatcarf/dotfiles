@@ -6,6 +6,11 @@
  configuration {
     modi: "window,run,drun";
     show-icons:true;
+    kb-row-down: "Down,Control+j";
+    kb-row-up: "Up,Control+k";
+    kb-accept-entry: "Return";
+    kb-remove-to-eol: "";
+  
 }
 * {
     selected-normal-foreground:  rgba ( 248, 248, 242, 100 % );
