@@ -209,8 +209,6 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 # Toggle keyboard layout
 bindsym $mod+t exec ~/.local/bin/toggle-keyboard.sh
-# Bluetooth gui
-bindsym $mod+Shift+b exec --no-startup-id rofi-bluetooth
 
 # styling
 smart_gaps on 
@@ -241,5 +239,5 @@ exec_always --no-startup-id autorandr --change
 workspace $ws1 output HDMI-A-0
 workspace $ws2 output eDP
 workspace $ws3 output HDMI-A-0
-for_window [class="Firefox"] focus
+#for_window [class="Firefox"] focus
 
