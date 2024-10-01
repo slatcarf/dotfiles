@@ -27,5 +27,6 @@
     ~/.vimrc: .vimrc
     ~/.local/bin/toggle-keyboard.sh: toggle-keyboard.sh
     ~/.config/wlogout: wlogout
+    ~/.local/share/rofi/themes: rofi-themes
 
 
