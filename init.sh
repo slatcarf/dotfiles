@@ -20,12 +20,12 @@ install_packages() {
 # Function to install 'z' from GitHub
 install_z() {
   Z_PATH=/usr/local/bin/z
-  echo "Installing z..."
 
   # Check if the .z directory already exists
   if [ -d "$Z_PATH" ]; then
     echo "z is already installed."
   else
+    echo "Installing z..."
     echo "Cloning z..."
     sudo git clone https://github.com/rupa/z.git $Z_PATH
   fi
@@ -57,7 +57,7 @@ install_fnm() {
   fi
 
   # Add fnm initialization to the shell profile to ensure it is loaded
-  if ! grep -q 'eval "$(fnm env --use-on-cd)"' "$HOME/.bashrc"; then
+  if ! grep -q 'eval "$(fnm env --use-on-cd' "$HOME/.bashrc"; then
     echo "Adding fnm initialization to .bashrc..."
     echo 'eval "$(fnm env --use-on-cd)"' >>"$HOME/.bashrc"
     append_newline_to_bashrc
@@ -77,18 +77,18 @@ install_kitty() {
     echo "Installing kitty..."
     curl -fsSL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     sudo ln -s $HOME/.local/kitty.app/bin/* /usr/bin/
+    echo "Kitty installation complete."
   fi
-  echo "Kitty installation complete."
 
 }
 
 # Function to install the latest Visual Studio Code
 install_vscode() {
-  echo "Installing Visual Studio Code..."
 
   if command -v code >/dev/null 2>&1; then
     echo "Visual Studio Code is already installed."
   else
+    echo "Installing Visual Studio Code..."
     sudo apt-get install wget gpg
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
     sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
