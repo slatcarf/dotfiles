@@ -221,14 +221,16 @@ client.focused #c0caf5 #1a1b26 #ffffff #7aa2f7 #7aa2f7
 client.focused_inactive #c0caf5 #1a1b26 #ffffff #1a1b26 #1a1b26
 client.unfocused #c0caf5 #1a1b26 #ffffff #1a1b26 #1a1b26
 for_window [class="^.*"] border pixel 2
+for_window [class="gnome-control-center"] floating enable,  resize set 1200 800, move position center
 smart_borders on 
 
 # autostart
 exec_always --no-startup-id picom 
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.fehbg &
-
 exec_always --no-startup-id autorandr --change
+# for automatic switching of layout depending on dimensions
+exec_always --no-startup-id autotiling
 
 # layout saving
 #exec --no-startup-id i3-msg "workspace $ws2; append_layout ~/.config/i3/workspace2.json"
