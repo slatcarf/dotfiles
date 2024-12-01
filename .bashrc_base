@@ -1,8 +1,12 @@
-alias dush="du -sh ./* | sort -hr"
+alias dush="du -sh ./* | sort -h"
 alias formatfix="pnpm format && git add . && git commit -m 'chore: formatting' && git push"
 alias ip='ip --color=auto'
 alias ls='ls --color=auto'
 alias df='df -PTh -x tmpfs -x devtmpfs -x squashfs -x overlay'
+
+function zathura() {
+  nohup zathura "$1" & exit
+}
 
 export EDITOR=vim
 export VISUAL=vim
