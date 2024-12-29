@@ -209,13 +209,15 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 # Toggle keyboard layout
 bindsym $mod+t exec ~/.local/bin/toggle-keyboard.sh
+bindsym $mod+shift+b exec --no-startup-id polybar-msg cmd toggle
+bindsym $mod+shift+f exec --no-startup-id nautilus --no-desktop --new-window
 
 # styling
 smart_gaps on 
-gaps inner 10
+gaps inner 5
 gaps outer 0
 default_border none
-for_window [floating] border none
+#for_window [floating] border none
 
 client.focused #c0caf5 #1a1b26 #ffffff #7aa2f7 #7aa2f7
 client.focused_inactive #c0caf5 #1a1b26 #ffffff #1a1b26 #1a1b26
