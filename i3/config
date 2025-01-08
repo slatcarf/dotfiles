@@ -228,9 +228,10 @@ smart_borders on
 
 # autostart
 exec_always --no-startup-id picom 
-exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.fehbg &
 exec_always --no-startup-id autorandr --change
+exec --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id redshift
 
 # for automatic switching of layout depending on dimensions
 #exec_always --no-startup-id autotiling
