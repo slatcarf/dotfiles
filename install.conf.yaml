@@ -29,5 +29,6 @@
     ~/.config/wlogout: wlogout
     ~/.local/share/rofi/themes: rofi-themes
     ~/.tmux.conf: .tmux.conf
+    ~/.config/redshift: redshift
 
 
