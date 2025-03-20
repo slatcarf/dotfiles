@@ -6,13 +6,13 @@ cava
 curl
 direnv
 feh
-firefox-esr
 fonts-jetbrains-mono
 git
 hstr
 htop
 i3
 i3lock-fancy
+librewolf
 maim
 neofetch
 network-manager
@@ -31,4 +31,3 @@ vim
 wlogout
 xclip
 xorg
-

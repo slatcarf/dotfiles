@@ -227,6 +227,10 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 sudo apt update && sudo apt upgrade
+sudo apt install extrepo -y
+# enable librewolf repo
+sudo extrepo enable librewolf
+sudo apt update
 
 # Install system-wide packages
 install_packages
