@@ -6,6 +6,7 @@
 
 - create:
   - ~/.config/zathura
+  - ~/.local/share/rofi
 
 - link:
     ~/.config/i3: i3
