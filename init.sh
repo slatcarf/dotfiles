@@ -53,7 +53,7 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
   fi
 
 else
-  ehco "You chose not to use i3 with GNOME Flashback. Skipping..."
+  echo "You chose not to use i3 with GNOME Flashback. Skipping..."
 fi
 
 append_newline_to_bashrc() {
@@ -109,15 +109,6 @@ install_fnm() {
     source "$HOME/.bashrc"
     fnm install 20
     fnm use 20
-  fi
-
-  # Add fnm initialization to the shell profile to ensure it is loaded
-  if ! grep -q 'eval "$(fnm env --use-on-cd' "$HOME/.bashrc"; then
-    echo "Adding fnm initialization to .bashrc..."
-    echo 'eval "$(fnm env --use-on-cd)"' >>"$HOME/.bashrc"
-    append_newline_to_bashrc
-  else
-    echo "fnm initialization already present in .bashrc"
   fi
 }
 
