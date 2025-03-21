@@ -319,4 +319,8 @@ else
   echo "X session is already running."
 fi
 
+echo "Disable desktop in gsettings..."
+gsettings set org.gnome.gnome-flashback desktop false
+gsettings set org.gnome.gnome-flashback root-background true
+
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."
