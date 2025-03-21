@@ -26,6 +26,7 @@
     ~/.config/starship.toml: starship.toml
     ~/.vimrc: .vimrc
     ~/.local/bin/toggle-keyboard.sh: toggle-keyboard.sh
+    ~/.local/bin/bluetooth.sh: bluetooth.sh
     ~/.config/wlogout: wlogout
     ~/.local/share/rofi/themes: rofi-themes
     ~/.tmux.conf: .tmux.conf
