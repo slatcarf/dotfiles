@@ -22,6 +22,8 @@ install_i3_gnome() {
     # Run make install with sudo to ensure proper permissions
     sudo make install
 
+    cd -
+
     echo "i3-gnome installation complete."
   fi
 }
@@ -31,7 +33,7 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
   echo "You chose to use i3 with GNOME Flashback. Installing..."
 
   # Install GNOME Flashback and i3
-  sudo apt-get install -y gnome-flashback
+  sudo apt-get install -y gnome-flashback make
   install_i3_gnome # Install i3-gnome integration
 
   I3_CONFIG_PATH="$HOME/.config/i3/config"
