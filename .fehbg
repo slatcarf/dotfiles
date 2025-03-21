@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale "$(dirname $0)/wallpaper/blobs-l.svg"
+feh --no-fehbg --bg-scale "$(dirname $0)/wallpaper/garden-gruvbox.png"
