@@ -40,7 +40,7 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
   dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:super']"
 
   I3_CONFIG_PATH="$HOME/.config/i3/config"
-  MEDIA_KEYS_CONFIG_PATH="$HOME/.config/i3/media-keybindings.config"
+  MEDIA_KEYS_CONFIG_PATH="\$HOME/.config/i3/media-keybindings.config"
 
   # remove 'include' for media keybindings from i3 config in case gnome flashback is used
   if [ -f "$I3_CONFIG_PATH" ]; then
