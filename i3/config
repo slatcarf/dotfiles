@@ -213,18 +213,24 @@ bindsym $mod+shift+b exec --no-startup-id polybar-msg cmd toggle
 bindsym $mod+shift+f exec --no-startup-id nautilus --no-desktop --new-window
 
 # styling
+  # gaps
 smart_gaps on 
 gaps inner 5
 gaps outer 0
-default_border none
-#for_window [floating] border none
 
+  # borders
+default_border none
 client.focused #c0caf5 #1a1b26 #ffffff #7aa2f7 #7aa2f7
 client.focused_inactive #c0caf5 #1a1b26 #ffffff #1a1b26 #1a1b26
 client.unfocused #c0caf5 #1a1b26 #ffffff #1a1b26 #1a1b26
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
+#for_window [floating] border none
+
+  # floating windows 
 for_window [class="gnome-control-center"] floating enable,  resize set 1200 800, move position center
+for_window [class="Blueman-manager"] floating enable, resize set 534 350, move position center
 smart_borders on 
+
 
 # autostart
 exec_always --no-startup-id picom  --experimental-backends
