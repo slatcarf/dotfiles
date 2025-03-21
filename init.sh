@@ -33,8 +33,11 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
   echo "You chose to use i3 with GNOME Flashback. Installing..."
 
   # Install GNOME Flashback and i3
-  sudo apt-get install -y gnome-flashback make
+  sudo apt-get install -y gnome-flashback make gdm3
   install_i3_gnome # Install i3-gnome integration
+
+  # remap caps to super with dconf, gnome overwrites settings from 00-keyboard.conf
+  dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:super']"
 
   I3_CONFIG_PATH="$HOME/.config/i3/config"
   MEDIA_KEYS_CONFIG_PATH="$HOME/.config/i3/media-keybindings.config"
