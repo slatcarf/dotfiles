@@ -1,6 +1,66 @@
 #!/bin/bash
 
-# Function to append a newline to .bashrc
+# Prompt the user at the start of the script
+read -p "Do you want to use i3 with GNOME Flashback? (y/n): " response
+
+install_i3_gnome() {
+  I3_GNOME_PATH="$HOME/.i3-gnome"
+  DESKTOP_FILE="/usr/share/applications/i3-gnome.desktop"
+
+  # Check if the i3-gnome desktop file already exists
+  if [ -f "$DESKTOP_FILE" ]; then
+    echo "i3-gnome is already installed."
+  else
+    echo "Installing i3-gnome..."
+
+    # Clone the i3-gnome repository to the specified path
+    git clone https://github.com/nmakel/i3-gnome.git "$I3_GNOME_PATH"
+
+    # Navigate to the directory and install dependencies
+    cd "$I3_GNOME_PATH" || return
+
+    # Run make install with sudo to ensure proper permissions
+    sudo make install
+
+    cd -
+
+    echo "i3-gnome installation complete."
+  fi
+}
+
+# Check if the user wants to proceed
+if [[ "$response" =~ ^[Yy]$ ]]; then
+  echo "You chose to use i3 with GNOME Flashback. Installing..."
+
+  # Install GNOME Flashback and i3
+  sudo apt-get install -y gnome-flashback make gdm3
+  install_i3_gnome # Install i3-gnome integration
+
+  # remap caps to super with dconf, gnome overwrites settings from 00-keyboard.conf
+  dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:super']"
+
+  I3_CONFIG_PATH="$HOME/.config/i3/config"
+  MEDIA_KEYS_CONFIG_PATH="\$HOME/.config/i3/media-keybindings.config"
+
+  # remove 'include' for media keybindings from i3 config in case gnome flashback is used
+  if [ -f "$I3_CONFIG_PATH" ]; then
+    # Check if the include line exists
+    if grep -q "include $MEDIA_KEYS_CONFIG_PATH" "$I3_CONFIG_PATH"; then
+      echo "Removing include line for $MEDIA_KEYS_CONFIG_PATH from i3 config."
+
+      # Remove the 'include' line using sed
+      sed -i "/$(echo $MEDIA_KEYS_CONFIG_PATH | sed 's/[&/\]/\\&/g')/d" $I3_CONFIG_PATH
+    else
+      echo "No include line for $MEDIA_KEYS_CONFIG_PATH found in i3 config."
+    fi
+  else
+    echo "$I3_CONFIG_PATH does not exist. Skipping removal."
+  fi
+
+else
+  echo "You chose not to use i3 with GNOME Flashback. Skipping..."
+fi
+
 append_newline_to_bashrc() {
   echo "" >>"$HOME/.bashrc"
 }
@@ -55,18 +115,9 @@ install_fnm() {
     fnm install 20
     fnm use 20
   fi
-
-  # Add fnm initialization to the shell profile to ensure it is loaded
-  if ! grep -q 'eval "$(fnm env --use-on-cd' "$HOME/.bashrc"; then
-    echo "Adding fnm initialization to .bashrc..."
-    echo 'eval "$(fnm env --use-on-cd)"' >>"$HOME/.bashrc"
-    append_newline_to_bashrc
-  else
-    echo "fnm initialization already present in .bashrc"
-  fi
 }
 
-# Function to install 'fnm' (Fast Node Manager)
+# Function to install 'kitty' (terminal emulator)
 install_kitty() {
   command -v kitty
 
@@ -227,6 +278,10 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 sudo apt update && sudo apt upgrade
+sudo apt install extrepo -y
+# enable librewolf repo
+sudo extrepo enable librewolf
+sudo apt update
 
 # Install system-wide packages
 install_packages
@@ -266,5 +321,9 @@ if ! pgrep -x "Xorg" >/dev/null; then
 else
   echo "X session is already running."
 fi
+
+echo "Disable desktop in gsettings..."
+gsettings set org.gnome.gnome-flashback desktop false
+gsettings set org.gnome.gnome-flashback root-background true
 
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."

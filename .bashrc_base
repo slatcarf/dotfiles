@@ -3,6 +3,7 @@ alias formatfix="pnpm format && git add . && git commit -m 'chore: formatting' &
 alias ip='ip --color=auto'
 alias ls='ls --color=auto'
 alias df='df -PTh -x tmpfs -x devtmpfs -x squashfs -x overlay'
+alias rm=trash
 
 function zathura() {
   nohup zathura "$1" & exit
