@@ -8,4 +8,4 @@ padding = { x = 12, y = 12}
 
 [font]
 normal = { family = "JetBrains Mono", style = "Regular"}
-size = 14
+size = 16
