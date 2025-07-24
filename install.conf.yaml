@@ -1,12 +1,13 @@
 - defaults:
     link:
       relink: true
+      create: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - create:
-  - ~/.config/zathura
-  - ~/.local/share/rofi
+    - ~/.config/zathura
+    - ~/.local/share/rofi
 
 - link:
     ~/.config/i3: i3
@@ -16,6 +17,8 @@
     ~/.config/rofi: rofi
     ~/.config/cava: cava
     ~/.bashrc_base: .bashrc_base
+    ~/.bash_aliases: .bash_aliases
+    ~/.bash_functions: .bash_functions
     ~/.zshrc: .zshrc
     ~/.config/zathura/zathurarc: zathurarc
     ~/.xinitrc: .xinitrc
@@ -31,6 +34,4 @@
     ~/.config/wlogout: wlogout
     ~/.local/share/rofi/themes: rofi-themes
     ~/.tmux.conf: .tmux.conf
-    ~/.config/redshift: redshift
-
-
+    ~/.config/redshift/redshift.conf: redshift/redshift.conf

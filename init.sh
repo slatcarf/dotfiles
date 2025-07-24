@@ -35,7 +35,9 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
   # Install GNOME Flashback and i3
   sudo apt-get install -y gnome-flashback make gdm3
   install_i3_gnome # Install i3-gnome integration
-
+  echo "Disable desktop in gsettings..."
+  gsettings set org.gnome.gnome-flashback desktop false
+  gsettings set org.gnome.gnome-flashback root-background true
   # remap caps to super with dconf, gnome overwrites settings from 00-keyboard.conf
   dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:super']"
 
@@ -294,7 +296,21 @@ else
   echo "source $HOME/.bashrc_base" >>"$HOME/.bashrc"
   echo "Added source $HOME/.bashrc_base to .bashrc"
 fi
+# add .bash_functions
 
+if grep -qxF "source $HOME/.bash_functions" "$HOME/.bashrc"; then
+  echo "source $HOME/.bash_functions is already present in .bashrc"
+else
+  echo "source $HOME/.bash_functions" >>"$HOME/.bashrc"
+  echo "Added source $HOME/.bash_functions to .bashrc"
+fi
+
+if grep -qxF "source $HOME/.bash_aliases" "$HOME/.bashrc"; then
+  echo "source $HOME/.bash_aliases is already present in .bashrc"
+else
+  echo "source $HOME/.bash_aliases" >>"$HOME/.bashrc"
+  echo "Added source $HOME/.bash_aliases to .bashrc"
+fi
 install_kitty
 
 install_starship
@@ -322,8 +338,6 @@ else
   echo "X session is already running."
 fi
 
-echo "Disable desktop in gsettings..."
-gsettings set org.gnome.gnome-flashback desktop false
-gsettings set org.gnome.gnome-flashback root-background true
+
 
 echo "Setup complete! Please restart your terminal or source your .bashrc to apply changes."
