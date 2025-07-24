@@ -4,7 +4,6 @@ arandr
 build-essential
 cava
 curl
-direnv
 feh
 fonts-jetbrains-mono
 git
