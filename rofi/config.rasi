@@ -3,15 +3,6 @@
  * User: milouse
  * Copyright: Étienne Deparis
  */
- configuration {
-    modi: "window,run,drun";
-    show-icons:true;
-    kb-row-down: "Down,Control+j";
-    kb-row-up: "Up,Control+k";
-    kb-accept-entry: "Return";
-    kb-remove-to-eol: "";
-  
-}
 * {
     selected-normal-foreground:  rgba ( 248, 248, 242, 100 % );
     foreground:                  rgba ( 248, 248, 242, 100 % );
@@ -154,4 +145,16 @@ textbox-prompt-colon {
     text-color: @normal-foreground;
 }
 
-@theme "/home/j/.local/share/rofi/themes/rounded-nord-dark.rasi"
+//@theme "/home/j/.local/share/rofi/themes/rounded-nord-dark.rasi"
+//@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+ configuration {
+    modi: "window,run,drun";
+    show-icons:true;
+    kb-row-down: "Down,Control+j";
+    kb-row-up: "Up,Control+k";
+    kb-accept-entry: "Return";
+    kb-remove-to-eol: "";
+    font: "Inter 12";
+  
+}
