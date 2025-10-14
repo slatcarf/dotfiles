@@ -10,3 +10,5 @@ alias ls='ls --color=auto'
 alias df='df -PTh -x tmpfs -x devtmpfs -x squashfs -x overlay'
 alias rm=trash
 alias xcp="xclip -sel clipboard"
+alias power="upower -e | grep BAT0 | xargs upower -i"
+
