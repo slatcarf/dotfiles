@@ -1,0 +1,7 @@
+[user]
+	name = Julian Wasmeier
+	email = julian.wasmeier@outlook.com
+[pull]
+	rebase = false
+[push]
+  autoSetupRemote = true
