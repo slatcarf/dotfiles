@@ -22,6 +22,7 @@
     ~/.zshrc: .zshrc
     ~/.config/zathura/zathurarc: zathurarc
     ~/.xinitrc: .xinitrc
+    ~/.inputrc: .inputrc
     ~/.config/alacritty: alacritty
     ~/.bash_profile: .bash_profile
     ~/.fehbg: .fehbg
@@ -35,3 +36,4 @@
     ~/.local/share/rofi/themes: rofi-themes
     ~/.tmux.conf: .tmux.conf
     ~/.config/redshift/redshift.conf: redshift/redshift.conf
+    ~/.gitconfig: .gitconfig
