@@ -202,7 +202,7 @@ bindsym $mod+Shift+minus floating enable, resize set 1200 800, move position cen
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 bindsym $mod+shift+b exec --no-startup-id polybar-msg cmd toggle
-bindsym $mod+shift+f exec --no-startup-id nautilus --no-desktop --new-window
+bindsym $mod+shift+f exec --no-startup-id nemo 
 
 # styling
   # gaps
