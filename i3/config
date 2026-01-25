@@ -44,7 +44,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -211,7 +211,7 @@ gaps inner 5
 gaps outer 0
 
   # borders
-default_border none
+for_window [class="^.*"] border pixel 2
 client.focused #c0caf5 #1a1b26 #ffffff #7aa2f7 #7aa2f7
 client.focused_inactive #c0caf5 #1a1b26 #ffffff #1a1b26 #1a1b26
 client.unfocused #c0caf5 #1a1b26 #ffffff #1a1b26 #1a1b26
@@ -248,3 +248,4 @@ workspace $ws3 output HDMI-A-0
 #for_window [class="Firefox"] focus
 
 include $HOME/.config/i3/media-keybindings.config
+
