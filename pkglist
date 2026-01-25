@@ -2,6 +2,7 @@ alacritty
 autorandr
 arandr
 build-essential
+brightnessctl
 cava
 curl
 feh
