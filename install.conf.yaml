@@ -37,3 +37,4 @@
     ~/.tmux.conf: .tmux.conf
     ~/.config/redshift/redshift.conf: redshift/redshift.conf
     ~/.gitconfig: .gitconfig
+    ~/.config/sway: sway
