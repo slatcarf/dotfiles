@@ -1,3 +1,5 @@
 
 export EDITOR=vim
 export VISUAL=vim
+# don't highlight directories which are writable by others and not sticky
+export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
